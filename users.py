@@ -10,3 +10,11 @@ def get_users():
         return response
     else:
         return None
+
+
+def get_user(user_id):
+    """Get a single user using their ID"""
+    all_users = get_users().json()
+    for user in all_users:
+        if user['id'] == user_id:
+            return user
