@@ -1,6 +1,9 @@
 import requests
+from env import token
 
 USERS_URL = 'http://jsonplaceholder.typicode.com/users'
+weather_url = 'http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=' + token
+print(weather_url)
 
 
 def get_users():
@@ -18,3 +21,16 @@ def get_user(user_id):
     for user in all_users:
         if user['id'] == user_id:
             return user
+
+
+def get_api():
+    response = requests.get(weather_url)
+    if response.ok:
+        print(response.json())
+        return response
+    else:
+        return None
+
+
+# commented out but can be used to run api call
+# get_api()
